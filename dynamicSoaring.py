@@ -188,18 +188,29 @@ class Albatross:
 
         return qdot
 
-    def plot_traj(self, sol:np.ndarray, quiver:bool=False):
+    def plot_traj(self, sol:np.ndarray, quiver:bool=False, double:bool=False):
         """
             Plot the trajectory, sea-level plane and the 
             wind-profile vector field
             sol: np.ndarray
                 shape: [num_steps, 3]
+            quiver: bool
+                If we want to plot the wind quiver
+            double: bool
+                If we want to plot two time periods
         """
         # https://stackoverflow.com/questions/36737053/mplot3d-fill-between-extends-over-axis-limits
         # https://jakevdp.github.io/PythonDataScienceHandbook/04.12-three-dimensional-plotting.html
         fig = plt.figure(figsize=(10,10))
         ax = plt.axes(projection='3d')
 
+        # if we want to plot two time periods
+        if double:
+            sol_copy = sol.copy()
+            start_point = sol[0, :2]
+            end_point = sol[-1, :2]
+            sol_copy[:, :2] = sol_copy[:, :2] + end_point - start_point
+            sol = np.concatenate((sol, sol_copy), 0)
         # Data for 3D trajectory
         zline = sol[:,2]
         xline = sol[:,0]
@@ -325,6 +336,10 @@ class Albatross:
         return periodicConstraint, initConstraint, lb, ub
     
     def optimise(self, Nt):
+        """
+            Perform the optimisation using the solution obtained
+            by simulating the trjacetory from the init_state `q0`
+        """
         self.Nt = Nt
         self.dt = self.tF/Nt
 
