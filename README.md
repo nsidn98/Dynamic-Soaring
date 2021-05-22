@@ -4,7 +4,9 @@ Code for "Overhead the Albatross Hangs Motionless Upon the Air with Dynamic Soar
 
 Simulation of trajectory optimisation for flight strategies used by albatrosses to achieve zero energy consumption long-flight trajectories along with trajectory stabilisation with LQR to account for noise and errors in dynamics.
 
-Refer the [paper](https://nsidn98.github.io/files/Dynamic_Soaring.pdf) for more details.
+Refer the [paper](https://nsidn98.github.io/files/Dynamic_Soaring.pdf) for more details. 
+
+Final [Video Presentation](https://www.youtube.com/watch?v=po543B51RzI)
 
 ## Wind profile:
 ![wind](https://raw.githubusercontent.com/nsidn98/Dynamic-Soaring/main/plots/wind.png?token=AGFGCME4ESRZMSVXXNTIGQLAV473E)
@@ -24,4 +26,4 @@ Refer the [paper](https://nsidn98.github.io/files/Dynamic_Soaring.pdf) for more 
 
 
 ## Note
-Done as a course project for the 6.832 Underactuated Robotics Spring 2021 course at MIT
+Done as a course project for the 6.832 Underactuated Robotics Spring 2021 course by Russ Tedrake at MIT.
