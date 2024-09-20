@@ -58,9 +58,10 @@ def unpackState(Z, Nt):
         return q, x, y, z, V, psi, gamma, cL, phi
 
 class Albatross:
-    def __init__(self, travelling:bool=True, m:float=9.5, 
-                delta:float=12, cD_0:float=0.01, S:float=0.65, 
-                rho:float=1.2, W0:float=7.8, tF:int=10):
+    def __init__(self, travelling: bool = True, m: float = 9.5, 
+                 delta: float = 12, cD_0: float = 0.01, S: float = 0.65, 
+                 rho: float = 1.2, W0: float = 7.8, tF: int = 10, 
+                 sigmoid=None):
         """
             –––––––––––
             Parameters:
@@ -82,6 +83,8 @@ class Albatross:
                 wind speed at z=10m
             tF: int
                 Time period for trajectory
+            sigmoid: any
+                Additional parameter for sigmoid function
         """
         self.travelling = travelling
         self.g = 9.8            # acceleration due to gravity in m/s^2
@@ -91,6 +94,7 @@ class Albatross:
         self.m = m
         self.cD_0 = cD_0
         self.S = S
+        self.sigmoid = sigmoid
         E_max = 40
         self.k = 1/(4 * self.cD_0 * E_max**2) # cD = cD_0 + k*cL**2
         self.sea_level = -10    # sea-level is at z=-10
